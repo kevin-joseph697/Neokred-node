@@ -3,13 +3,13 @@ const convertToHtml = async(req,res)=>{
     try{
         const {content} = req.body
         if(!content){
-            res.status(400).send({
+          return res.status(400).send({
                 message:'content is not available'
             })
         }
-        const html = marked(content)
+        const html = await marked(content)
         res.send({
-            message:html
+            result:html
         })
     }catch(err){
         throw err
